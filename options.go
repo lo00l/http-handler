@@ -41,3 +41,17 @@ func WithLogger(logger *log.Logger) Option {
 func (opt *loggerOption) apply(h *Handler) {
 	h.logger = opt.logger
 }
+
+type limitRequestsOption struct {
+	limit int
+}
+
+func LimitRequests(limit int) Option {
+	return &limitRequestsOption{
+		limit: limit,
+	}
+}
+
+func (opt *limitRequestsOption) apply(h *Handler) {
+	h.maxRequests = opt.limit
+}
