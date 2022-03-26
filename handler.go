@@ -55,27 +55,31 @@ func (s *semaphore) release() {
 }
 
 type Handler struct {
-	sem    *semaphore
-	logger *log.Logger
-	client *http.Client
+	sem         *semaphore
+	logger      *log.Logger
+	client      *http.Client
+	maxRequests int
 }
 
 // NewHandler created Handler and applies provided options.
 func NewHandler(opts ...Option) *Handler {
-	h := &Handler{
-		sem: newSemaphore(defaultMaxIncomingRequests),
-	}
+	h := &Handler{}
 
 	for _, opt := range opts {
 		opt.apply(h)
 	}
 
+	if h.maxRequests == 0 {
+		h.maxRequests = defaultMaxIncomingRequests
+	}
 	if h.client == nil {
 		h.client = defaultClient
 	}
 	if h.logger == nil {
 		h.logger = defaultLogger
 	}
+
+	h.sem = newSemaphore(h.maxRequests)
 
 	return h
 }
