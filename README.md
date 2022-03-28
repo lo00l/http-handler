@@ -45,7 +45,7 @@ Then after running abode program and executing `curl -X POST --data-binary "@url
 
 Note that response items are not guaranteed to be sorted.
 
-Customize
+### Customize
 
 It's also possible to pass some options to `NewHandler()` function to change default handler's behaviour.
 
