@@ -36,7 +36,7 @@ https://twitter.com
 https://fb.com
 ```
 
-Then after running abode program and executing `curl -X POST --data-binary "@urls.txt" http://127.0.0.1:8000` the output should be something like this:
+Then after running above program and executing `curl -X POST --data-binary "@urls.txt" http://127.0.0.1:8000` the output should be something like this:
 ```text
 17195
 96432
