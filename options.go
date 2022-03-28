@@ -31,7 +31,7 @@ type loggerOption struct {
 	logger *log.Logger
 }
 
-// WithLogger creates new Options which sets custom logger.
+// WithLogger creates new Option which sets custom logger.
 func WithLogger(logger *log.Logger) Option {
 	return &loggerOption{
 		logger: logger,
@@ -46,6 +46,8 @@ type limitRequestsOption struct {
 	limit int
 }
 
+// LimitRequests creates new Option which sets number
+// of Handler's maximum concurrent incoming requests
 func LimitRequests(limit int) Option {
 	return &limitRequestsOption{
 		limit: limit,
